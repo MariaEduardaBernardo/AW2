@@ -1,0 +1,18 @@
+.text-small {
+    font-size: 0.9rem !important;
+}
+
+body {
+    background: linear-gradient(to right, #94f0f7, #776ef3);
+}
+
+#botao{
+    background-color: #776ef3;
+    border: none;
+    padding: 1%;
+    color: white;
+}
+
+#botao:hover{
+    background-color: #635db4;
+}
