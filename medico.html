@@ -1,5 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Agradecimento</title>
+</head>
+<body>
+  <h2>Obrigado!</h2>
+  <p>Suas respostas foram enviadas com sucesso. Abaixo estão as informações enviadas:</p>
 
+  <div id="respostasContainer">
+    <!-- As respostas serão preenchidas dinamicamente usando JavaScript -->
+  </div>
 
-<h2>Base de dados sobre preveção de diabetes</h2>
-<p>Tem como objetivo mapear e concientizar a partir das suas informações</p>
-<p>Totalmente anonimo</p>
+  <script>
+    window.onload = function() {
+      var respostas = {};
+      var queryString = window.location.search.substr(1);
+      var params = new URLSearchParams(queryString);
+      for (const [key, value] of params) {
+        respostas[key] = value;
+      }
+
+      var respostasContainer = document.getElementById('respostasContainer');
+      for (var key in respostas) {
+        if (respostas.hasOwnProperty(key)) {
+          var respostaElement = document.createElement('p');
+          respostaElement.innerHTML = key + ': ' + respostas[key];
+          respostasContainer.appendChild(respostaElement);
+        }
+      }
+    };
+  </script>
+</body>
+</html>

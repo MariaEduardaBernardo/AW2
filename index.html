@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-lg-7 mx-auto">
 
-                        <form action="">
+                        <form action="" id="RespostaForms">
                         <div class="card shadow border-0 mb-5">
                             <div class="card-body p-5">
                                 <h2 class="h4 mb-1">Titulo</h2>
@@ -32,7 +32,7 @@
 
                                     <div>
                                         <p>Idade</p>
-                                        <input type="number">
+                                        <input type="number" required>
                                     </div><br>
 
                                     <p>Gênero</p><span class="small font-italic text-muted">Por questões biologicas, não foi possível adicionar outras opções de identidade de gênero (ex: não-binario, transgênero)</span><br>
@@ -45,7 +45,7 @@
 
                                             </label>
                                         </div>
-                                      </div><br>
+                                    </div><br>
 
                                     <div class="custom-control custom-radio">
                                         <input class="custom-control-input" id="customRadio2" type="checkbox" name="customRadio">
@@ -179,5 +179,12 @@
                 </div>
             </div>
         </section>
+
+        <script>
+        document.getElementById("RespostaForms").addEventListener("submit", function(event) {
+        alert("Obrigado! Sua resposta foi enviada com sucesso.");
+        });
+
+        </script>
     </body>
 </html>
