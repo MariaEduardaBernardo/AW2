@@ -26,14 +26,17 @@
                         <form action="" id="RespostaForms">
                         <div class="card shadow border-0 mb-5">
                             <div class="card-body p-5">
-                                <h2 class="h4 mb-1">Titulo</h2>
-                                <p class="small text-muted font-italic mb-4">Explicação sobre as escolhas abaixo.</p>
+                                <h2 class="h4 mb-1">Formulario de dados</h2>
+                                <p class="small text-muted font-italic mb-4">Esse formulario serve para facilitar o entendimento e desesnvolvimento dos sintomas presentes na diabetes para diagnosticos mais precisos sobre ela. </p>
                                 <ul class="list-group">
 
                                     <div>
                                         <p>Idade</p>
-                                        <input type="number" required>
-                                    </div><br>
+                                        <span class="small font-italic text-muted">Digite a sua idade.</span>
+                                        <br>
+                                        <input type="number" required><br>
+                                        <span class="small font-italic text-muted">Caso prefira pode digitar.</span>
+                                    </div>
 
                                     <p>Gênero</p><span class="small font-italic text-muted">Por questões biologicas, não foi possível adicionar outras opções de identidade de gênero (ex: não-binario, transgênero)</span><br>
                                     <div class="custom-control custom-radio">
@@ -168,7 +171,6 @@
                                             <input class="custom-control-input" id="customRadio17" type="radio" name="customRadio">
                                         <label class="custom-control-label" for="customRadio17"><p>Negativo</p></label>
                                         </div>
-                                    
                                     </div><br>
 
                                     <button id="botao" type="submit">Enviar resposta</button>
