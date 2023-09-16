@@ -15,7 +15,7 @@
 <body>
   <h1>Informações sobre Diabetes</h1>
 
-  <form id="filter-form">
+   <form id="filter-form" action="dados.php" method="post">
     <label for="genero">Filtrar por Gênero:</label>
     <select class="form-select" aria-label="Default select example" name="genero" id="genero">
       <option selected>Todos</option>
@@ -66,8 +66,6 @@
       <label class="form-check-label" for="flexSwitchCheckDefault">Embaçamento visual</label>
     </div>
 
-
-
     <input type="submit" value="Ver dados">
   </form>
 
@@ -75,82 +73,5 @@
     <h2>Dados dos pacientes</h2>
     <!-- Resultados exibidos aqui -->
   </div>
-
-  <script>
-    // Dados fictícios para simulação (substitua por seus próprios dados)
-    const dados = [
-      { genero: 'Masculino', tipo_diabetes: 'tipo1', sintomas: ['aumento_sede'] },
-      { genero: 'Feminino', tipo_diabetes: 'tipo2', sintomas: ['cansaco', 'embaracamento_visual'] },
-      // Adicione mais dados aqui
-    ];
-
-    // Função para exibir resultados com base nos filtros
-    function aplicarFiltros() {
-      const generoSelecionado = document.getElementById('genero').value;
-      const tipoDiabetesSelecionado = document.getElementById('tipo_diabetes').value;
-      const sintomasSelecionados = [...document.querySelectorAll('input[name="sintomas[]"]:checked')].map(input => input.value);
-
-      const resultadosFiltrados = dados.filter(paciente => {
-        if (generoSelecionado !== 'Todos' && paciente.genero !== generoSelecionado) {
-          return false;
-        }
-        if (tipoDiabetesSelecionado !== 'todos' && paciente.tipo_diabetes !== tipoDiabetesSelecionado) {
-          return false;
-        }
-        if (sintomasSelecionados.length > 0) {
-          for (const sintoma of sintomasSelecionados) {
-            if (!paciente.sintomas.includes(sintoma)) {
-              return false;
-            }
-          }
-        }
-        return true;
-      });
-
-      exibirResultados(resultadosFiltrados);
-    }
-
-    // Função para exibir os resultados na página
-    function exibirResultados(resultados) {
-      const resultadosDiv = document.getElementById('resultados');
-      resultadosDiv.innerHTML = '';
-
-      if (resultados.length > 0) {
-        const tabela = document.createElement('table');
-        tabela.innerHTML = `
-          <tr>
-            <th>Gênero</th>
-            <th>Tipo de Diabetes</th>
-            <th>Sintomas</th>
-          </tr>
-        `;
-
-        resultados.forEach(paciente => {
-          const sintomas = paciente.sintomas.join(', ');
-          const linha = document.createElement('tr');
-          linha.innerHTML = `
-            <td>${paciente.genero}</td>
-            <td>${paciente.tipo_diabetes}</td>
-            <td>${sintomas}</td>
-          `;
-          tabela.appendChild(linha);
-        });
-
-        resultadosDiv.appendChild(tabela);
-      } else {
-        resultadosDiv.innerHTML = '<p>Nenhum resultado encontrado.</p>';
-      }
-    }
-
-    // Event listener para o envio do formulário
-    document.getElementById('filter-form').addEventListener('submit', function (event) {
-      event.preventDefault();
-      aplicarFiltros();
-    });
-
-    // Inicialmente, exibir todos os dados
-    exibirResultados(dados);
-  </script>
 </body>
-
 </html>
