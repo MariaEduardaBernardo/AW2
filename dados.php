@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "estudante1";
+$username = "estudante1";
+$password = "estudante1";
+$dbname = "pacientes";
 
 try {
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -11,23 +11,23 @@ try {
         throw new Exception("Erro na conexão com o banco de dados: " . $conn->connect_error);
     }
 
-    $genero = isset($_POST['genero']) ? mysqli_real_escape_string($conn, $_POST['genero']) : 'todos';
-    $tipo_diabetes = isset($_POST['tipo_diabetes']) ? mysqli_real_escape_string($conn, $_POST['tipo_diabetes']) : 'todos';
+    $gener = isset($_POST['gener']) ? mysqli_real_escape_string($conn, $_POST['gener']) : 'todos';
+    $diabetes = isset($_POST['diabetes']) ? mysqli_real_escape_string($conn, $_POST['diabetes']) : 'todos';
     $sintomas = isset($_POST['sintomas']) ? $_POST['sintomas'] : [];
 
-    $sql = "SELECT campo1, campo2 FROM pacientes WHERE 1 = 1";
+    $sql = "SELECT gener, age FROM pacientes WHERE 1 = 1";
 
-    if ($genero != 'todos') {
-        $sql .= " AND genero = ?";
+    if ($gener != 'todos') {
+        $sql .= " AND gener = ?";
     }
 
-    if ($tipo_diabetes != 'todos') {
-        $sql .= " AND tipo_diabetes = ?";
+    if ($diabetes != 'todos') {
+        $sql .= " AND diabetes = ?";
     }
 
     if (!empty($sintomas)) {
         $placeholders = implode(', ', array_fill(0, count($sintomas), '?'));
-        $sql .= " AND sintoma IN ($placeholders)";
+        $sql .= " AND sintomas IN ($placeholders)";
     }
 
     $stmt = $conn->prepare($sql);
@@ -36,12 +36,12 @@ try {
         throw new Exception("Erro na preparação da consulta: " . $conn->error);
     }
 
-    if ($genero != 'todos') {
-        $stmt->bind_param("s", $genero);
+    if ($gener != 'todos') {
+        $stmt->bind_param("s", $gener);
     }
 
-    if ($tipo_diabetes != 'todos') {
-        $stmt->bind_param("s", $tipo_diabetes);
+    if ($diabetes != 'todos') {
+        $stmt->bind_param("s", $diabetes);
     }
 
     if (!empty($sintomas)) {
@@ -58,8 +58,9 @@ try {
         echo "<table>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
-            echo "<td>" . $row['campo1'] . "</td>";
-            echo "<td>" . $row['campo2'] . "</td>";
+            echo "<td>" . $row['gener'] . "</td>";
+            echo "<td>" . $row['age'] . "</td>";
+            echo "<td>" . $row['age'] . "</td>";
             echo "</tr>";
         }
         echo "</table>";
